@@ -1,9 +1,12 @@
-# This is a basic workflow to help you get started with Actions
+# Any workflow file has to be created inside the .github/workflows folder
+# You can create more than one workflow for each repository.  They are all stored in ^.
 
+# Name should be descriptive of what the workflow is doing.  Especially helpful when you
+# have multiple workflows for a repo.
 name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
+# events but only for the main branch.  You can also include tags/paths/etc.
 on:
   push:
     branches: [ main ]
@@ -12,14 +15,21 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  # This workflow contains a single job called "hello-world"
+  hello-world:
+    # The type of runner that the job will run on.  Can be github hosted (quick & simple) or self hosted (custom).
+    # Github hosted: windows-latest, windows-2019, ubuntu-latest, Ubuntu-18.04, ubuntu-16.04, macos-latest, macos-10.15
+    # Self Hosted - we can put these in azure [self-hosted, linux, ARM32]
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+    # Actions are the smallest portable building block of a workflow
+    # Each step in the job executes on the same runner so they can share info
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # This is a standard action.  This checkout is required if you need a copy of your code or 
+      # if your actions are defined in your own code.
+      # Not all steps run actions but all actions run as a step
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
